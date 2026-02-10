@@ -1,0 +1,163 @@
+        /* Animasi saat ganti Slider → Grid */
+        #berita-slider-container,
+        #berita-grid-container {
+            transition: opacity .4s ease, transform .4s ease;
+        }
+
+        .berita-hide {
+            opacity: 0;
+            transform: translateY(30px);
+            height: 0;
+            overflow: hidden;
+        }
+
+        .berita-show {
+            opacity: 1;
+            transform: translateY(0);
+            height: auto;
+        }
+
+    <!-- BERITA SLIDER -->
+    <section id="berita">
+
+        <div id="berita-slider-container" class="berita-show" data-aos="fade-up">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold">📰 Berita Terbaru</h4>
+                <button class="btn btn-primary btn-sm rounded-pill px-4" onclick="showAllBerita()">
+                    Lihat Semua
+                </button>
+            </div>
+
+            <div class="berita-slider d-flex gap-4">
+
+                <div class="card news-card position-relative">
+                    <span class="news-date">20 Jan 2026</span>
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-1">
+                            Pelantikan Pengurus BEM FASILKOM
+                        </h6>
+
+                        <div class="news-meta">
+                            <span>🕒 09.00 WIB</span>
+                            <span>📍 Aula FASILKOM</span>
+                        </div>
+
+                        <p class="text-muted small mb-0">
+                            Langkah awal kepengurusan baru BEM FASILKOM.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card news-card position-relative">
+                    <span class="news-date">2 Feb 2026</span>
+                    <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-1">
+                            Seminar Teknologi & Digitalisasi
+                        </h6>
+
+                        <div class="news-meta">
+                            <span>🕒 13.00 WIB</span>
+                            <span>📍 Ruang Seminar Gedung A</span>
+                        </div>
+
+                        <p class="text-muted small mb-0">
+                            Meningkatkan literasi digital mahasiswa.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- GRID BERITA -->
+        {{-- <div id="berita-grid-container" class="d-none" data-aos="fade-up"> --}}
+        <div id="berita-grid-container" class="berita-hide" data-aos="fade-up">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="berita-grid-title">📚 Semua Berita</h4>
+                <button class="btn btn-outline-secondary btn-sm rounded-pill px-4" onclick="showSlider()">
+                    Kembali
+                </button>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card news-card position-relative h-100">
+                        <span class="news-date">15 Feb 2026</span>
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
+
+                        <div class="card-body">
+                            <h5 class="fw-bold mt-2">
+                                FASILKOM Peduli Sosial
+                            </h5>
+
+                            <div class="news-meta">
+                                <span>🕒 08.00 WIB</span>
+                                <span>📍 Desa Binaan Karawang</span>
+                            </div>
+
+                            <p class="text-muted small">
+                                Program pengabdian masyarakat sebagai bentuk kepedulian mahasiswa.
+                            </p>
+
+                            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">
+                                Baca Selengkapnya →
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ulangi sampai 9 -->
+
+            </div>
+
+            <!-- PAGINATION -->
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link">‹</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link">1</a></li>
+                    <li class="page-item"><a class="page-link">2</a></li>
+                    <li class="page-item"><a class="page-link">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link">›</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+
+            function showAllBerita() {
+            const slider = document.getElementById('berita-slider-container');
+            const grid = document.getElementById('berita-grid-container');
+
+            slider.classList.remove('berita-show');
+            slider.classList.add('berita-hide');
+
+            grid.classList.remove('berita-hide');
+            grid.classList.add('berita-show');
+
+            AOS.refresh();
+        }
+
+        function showSlider() {
+            const slider = document.getElementById('berita-slider-container');
+            const grid = document.getElementById('berita-grid-container');
+
+            grid.classList.remove('berita-show');
+            grid.classList.add('berita-hide');
+
+            slider.classList.remove('berita-hide');
+            slider.classList.add('berita-show');
+
+            AOS.refresh();
+        }

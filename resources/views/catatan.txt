@@ -1,0 +1,26 @@
+Yang cukup 1 data saja (pakai UPDATE saja)
+
+Ini cukup 1 baris di database:
+
+Hero
+
+Filosofi
+
+Visi Misi
+
+Kontak
+
+Artinya:
+Admin cuma edit → bukan nambah banyak.
+
+Yang perlu CRUD full
+
+Ini bisa banyak data:
+
+Berita
+
+Struktur organisasi
+
+Departemen
+
+Anggota
