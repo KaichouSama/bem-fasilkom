@@ -1,163 +1,415 @@
-        /* Animasi saat ganti Slider → Grid */
-        #berita-slider-container,
-        #berita-grid-container {
-            transition: opacity .4s ease, transform .4s ease;
-        }
+    <!-- STRUKTUR ORGANISASI -->
+    <section id="struktur">
+        <div class="container">
+            <h2 class="text-center section-title" data-aos="fade-up">
+                Struktur Organisasi
+            </h2>
 
-        .berita-hide {
-            opacity: 0;
-            transform: translateY(30px);
-            height: 0;
-            overflow: hidden;
-        }
+            <!-- ROW 1 -->
+            <div class="row g-4 text-center mb-4">
 
-        .berita-show {
-            opacity: 1;
-            transform: translateY(0);
-            height: auto;
-        }
-
-    <!-- BERITA SLIDER -->
-    <section id="berita">
-
-        <div id="berita-slider-container" class="berita-show" data-aos="fade-up">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="fw-bold">📰 Berita Terbaru</h4>
-                <button class="btn btn-primary btn-sm rounded-pill px-4" onclick="showAllBerita()">
-                    Lihat Semua
-                </button>
-            </div>
-
-            <div class="berita-slider d-flex gap-4">
-
-                <div class="card news-card position-relative">
-                    <span class="news-date">20 Jan 2026</span>
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-
-                    <div class="card-body">
-                        <h6 class="fw-bold mb-1">
-                            Pelantikan Pengurus BEM FASILKOM
-                        </h6>
-
-                        <div class="news-meta">
-                            <span>🕒 09.00 WIB</span>
-                            <span>📍 Aula FASILKOM</span>
-                        </div>
-
-                        <p class="text-muted small mb-0">
-                            Langkah awal kepengurusan baru BEM FASILKOM.
-                        </p>
+                <!-- BPH -->
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="card division-btn p-4" onclick="showBidang('BPH', bidangData.BPH, this)">
+                        <i class="bi bi-diagram-3-fill fs-1 text-primary mb-3"></i>
+                        <h5 class="fw-bold">BPH</h5>
+                        <small class="text-muted">Badan Pengurus Harian</small>
                     </div>
                 </div>
 
-                <div class="card news-card position-relative">
-                    <span class="news-date">2 Feb 2026</span>
-                    <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786">
+                <!-- PSDM -->
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card division-btn p-4" onclick="showBidang('PSDM', bidangData.PSDM, this)">
+                        <i class="bi bi-people-fill fs-1 text-success mb-3"></i>
+                        <h5 class="fw-bold">Bidang PSDM</h5>
+                        <small class="text-muted">Pengembangan SDM</small>
+                    </div>
+                </div>
 
-                    <div class="card-body">
-                        <h6 class="fw-bold mb-1">
-                            Seminar Teknologi & Digitalisasi
-                        </h6>
-
-                        <div class="news-meta">
-                            <span>🕒 13.00 WIB</span>
-                            <span>📍 Ruang Seminar Gedung A</span>
-                        </div>
-
-                        <p class="text-muted small mb-0">
-                            Meningkatkan literasi digital mahasiswa.
-                        </p>
+                <!-- MINAT BAKAT -->
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card division-btn p-4" onclick="showBidang('Minat & Bakat', bidangData.MINBAT, this)">
+                        <i class="bi bi-trophy-fill fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-bold">Bidang Minat & Bakat</h5>
+                        <small class="text-muted">Potensi & Kreativitas</small>
                     </div>
                 </div>
 
             </div>
-        </div>
 
+            <!-- ROW 2 -->
+            <div class="row g-4 text-center mb-5 justify-content-center">
 
-        <!-- GRID BERITA -->
-        {{-- <div id="berita-grid-container" class="d-none" data-aos="fade-up"> --}}
-        <div id="berita-grid-container" class="berita-hide" data-aos="fade-up">
+                <!-- SOSPOL -->
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card division-btn p-4"
+                        onclick="showBidang('Sosial Politik', bidangData.SOSPOL, this)">
+                        <i class="bi bi-megaphone-fill fs-1 text-danger mb-3"></i>
+                        <h5 class="fw-bold">Bidang Sosial Politik</h5>
+                        <small class="text-muted">Advokasi & Kajian</small>
+                    </div>
+                </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="berita-grid-title">📚 Semua Berita</h4>
-                <button class="btn btn-outline-secondary btn-sm rounded-pill px-4" onclick="showSlider()">
-                    Kembali
-                </button>
+                <!-- KOMINFO -->
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card division-btn p-4" onclick="showBidang('Kominfo', bidangData.KOMINFO, this)">
+                        <i class="bi bi-wifi fs-1 text-info mb-3"></i>
+                        <h5 class="fw-bold">Bidang Kominfo</h5>
+                        <small class="text-muted">Media & Informasi</small>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="row g-4">
+            <!-- DETAIL BIDANG -->
+            <div id="bidang-detail" class="d-none" data-aos="fade-up">
+                <div class="text-center mb-5" id="bidang-header">
+                    <h3 class="fw-bold" id="bidang-nama"></h3>
 
-                <div class="col-md-4">
-                    <div class="card news-card position-relative h-100">
-                        <span class="news-date">15 Feb 2026</span>
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
+                    <img id="bidang-foto" class="rounded-circle shadow mb-3"
+                        style="width:150px;height:150px;object-fit:cover">
 
-                        <div class="card-body">
-                            <h5 class="fw-bold mt-2">
-                                FASILKOM Peduli Sosial
-                            </h5>
+                    <h5 class="fw-semibold mb-1" id="bidang-koor"></h5>
+                    <p class="text-muted mb-0" id="bidang-nama-koor"></p>
+                </div>
 
-                            <div class="news-meta">
-                                <span>🕒 08.00 WIB</span>
-                                <span>📍 Desa Binaan Karawang</span>
+                <div class="row g-4" id="departemen-list"></div>
+                <!-- DETAIL DEPARTEMEN -->
+                <div id="departemen-detail" class="d-none mt-5">
+                    <hr class="mb-4">
+
+                    <h4 class="fw-bold text-center" id="dept-nama"></h4>
+
+                    <!-- KOORDINATOR -->
+                    <div class="text-center my-4">
+                        <img id="dept-koor-foto" class="rounded-circle shadow mb-2"
+                            style="width:130px;height:130px;object-fit:cover">
+                        <h6 class="fw-bold mb-0" id="dept-koor-jabatan"></h6>
+                        <p class="text-muted" id="dept-koor-nama"></p>
+                    </div>
+
+                    <!-- VISI MISI -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm rounded-4 p-4">
+                                <h6 class="fw-bold text-primary">Visi</h6>
+                                <p id="dept-visi" class="mb-0"></p>
                             </div>
-
-                            <p class="text-muted small">
-                                Program pengabdian masyarakat sebagai bentuk kepedulian mahasiswa.
-                            </p>
-
-                            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">
-                                Baca Selengkapnya →
-                            </a>
                         </div>
-
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm rounded-4 p-4">
+                                <h6 class="fw-bold text-primary">Misi</h6>
+                                <ul id="dept-misi" class="mb-0"></ul>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- ANGGOTA -->
+                    <h5 class="fw-bold text-center mb-3">Anggota</h5>
+                    <div class="row justify-content-center g-4" id="dept-anggota"></div>
                 </div>
 
-                <!-- ulangi sampai 9 -->
-
             </div>
-
-            <!-- PAGINATION -->
-            <nav class="mt-5">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link">‹</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link">1</a></li>
-                    <li class="page-item"><a class="page-link">2</a></li>
-                    <li class="page-item"><a class="page-link">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link">›</a>
-                    </li>
-                </ul>
-            </nav>
 
         </div>
     </section>
 
-            function showAllBerita() {
-            const slider = document.getElementById('berita-slider-container');
-            const grid = document.getElementById('berita-grid-container');
 
-            slider.classList.remove('berita-show');
-            slider.classList.add('berita-hide');
+            /* DATA STRUKTUR */
+        const bidangData = {
+            BPH: {
+                koor: "Badan Pengurus Harian",
+                foto: "https://randomuser.me/api/portraits/men/10.jpg", // Ketua
+                struktur: {
+                    ketua: {
+                        jabatan: "Ketua Umum",
+                        nama: "Mulyono",
+                        foto: "https://randomuser.me/api/portraits/men/10.jpg",
+                        tugas: "Memimpin dan bertanggung jawab atas seluruh organisasi"
+                    },
+                    wakil: {
+                        jabatan: "Wakil Ketua",
+                        nama: "FufuFafa",
+                        foto: "https://randomuser.me/api/portraits/men/11.jpg",
+                        tugas: "Membantu dan menggantikan Ketua Umum"
+                    },
+                    sekretaris: [{
+                            nama: "Gufron",
+                            foto: "https://randomuser.me/api/portraits/women/20.jpg"
+                        },
+                        {
+                            nama: "Wowo",
+                            foto: "https://randomuser.me/api/portraits/women/21.jpg"
+                        }
+                    ],
+                    bendahara: [{
+                            nama: "Rusdi",
+                            foto: "https://randomuser.me/api/portraits/men/22.jpg"
+                        },
+                        {
+                            nama: "Rusman",
+                            foto: "https://randomuser.me/api/portraits/men/23.jpg"
+                        }
+                    ]
+                }
+            },
 
-            grid.classList.remove('berita-hide');
-            grid.classList.add('berita-show');
 
-            AOS.refresh();
-        }
+            PSDM: {
+                koor: "Koordinator PSDM",
+                namaKoor: "Ahmad Fauzan",
+                foto: "https://randomuser.me/api/portraits/men/32.jpg",
+                departemen: [{
+                        nama: "Departemen Kaderisasi",
+                        visi: "Mencetak kader berintegritas dan berjiwa kepemimpinan",
+                        misi: [
+                            "Melaksanakan kaderisasi berjenjang",
+                            "Meningkatkan loyalitas organisasi"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Kaderisasi",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        nama: "Departemen Pengembangan & Pengawasan",
+                        visi: "Meningkatkan kualitas SDM mahasiswa",
+                        misi: [
+                            "Pengembangan soft skill",
+                            "Pengawasan internal organisasi"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Pengembangan & Pengawasan",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    }
+                ]
+            },
 
-        function showSlider() {
-            const slider = document.getElementById('berita-slider-container');
-            const grid = document.getElementById('berita-grid-container');
+            MINBAT: {
+                koor: "Koordinator Minat & Bakat",
+                namaKoor: "Ahmad Fauzan",
+                foto: "https://randomuser.me/api/portraits/women/45.jpg",
+                departemen: [{
+                        nama: "Departemen Keilmuan",
+                        visi: "Meningkatkan akademik mahasiswa",
+                        misi: ["Diskusi rutin", "Pendampingan akademik"],
+                        koor: {
+                            jabatan: "Koordinator Keilmuan",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        nama: "Departemen Olahraga",
+                        visi: "Membangun sportivitas dan kebersamaan",
+                        misi: ["Turnamen internal", "Latihan rutin"],
+                        koor: {
+                            jabatan: "Koordinator Olahraga",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        nama: "Departemen Seni Budaya",
+                        visi: "Mengembangkan kreativitas dan budaya mahasiswa",
+                        misi: ["Event seni", "Pelestarian budaya"],
+                        koor: {
+                            jabatan: "Koordinator Seni Budaya",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    }
+                ]
+            },
 
-            grid.classList.remove('berita-show');
-            grid.classList.add('berita-hide');
+            SOSPOL: {
+                koor: "Koordinator Sosial Politik",
+                namaKoor: "Ahmad Fauzan",
+                foto: "https://randomuser.me/api/portraits/men/41.jpg",
+                departemen: [{
+                        nama: "Departemen Adkesma",
+                        visi: "Advokasi kesejahteraan mahasiswa",
+                        misi: [
+                            "Pendataan permasalahan mahasiswa",
+                            "Pendampingan advokasi"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Adkesma",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        nama: "Departemen Kastrat",
+                        visi: "Kajian strategis dan isu kebijakan",
+                        misi: [
+                            "Diskusi publik",
+                            "Kajian kebijakan kampus"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Kastrat",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        nama: "Departemen Pengabdian Masyarakat",
+                        visi: "Penguatan peran sosial mahasiswa",
+                        misi: [
+                            "Bakti sosial",
+                            "Program desa binaan"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Pengabdian Masyarakat",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    }
+                ]
+            },
 
-            slider.classList.remove('berita-hide');
-            slider.classList.add('berita-show');
+            KOMINFO: {
+                koor: "Koordinator Kominfo",
+                namaKoor: "Ahmad Fauzan",
+                foto: "https://randomuser.me/api/portraits/men/52.jpg",
+                departemen: [{
+                        nama: "Departemen Media",
+                        visi: "Menyajikan informasi yang kreatif dan edukatif",
+                        misi: [
+                            "Desain grafis",
+                            "Dokumentasi kegiatan"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Media",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        nama: "Departemen PTI",
+                        visi: "Pengembangan teknologi dan sistem informasi",
+                        misi: [
+                            "Website BEM",
+                            "Sistem internal organisasi"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator PTI",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                            nama: "A",
+                            foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                        }]
+                    },
+                    {
+                        nama: "Departemen Bisnis & Kemitraan",
+                        visi: "Membangun kemandirian finansial organisasi",
+                        misi: [
+                            "Kerja sama eksternal",
+                            "Pengelolaan usaha BEM"
+                        ],
+                        koor: {
+                            jabatan: "Koordinator Bisnis & Kemitraan",
+                            nama: "Rizky Ramadhan",
+                            foto: "https://randomuser.me/api/portraits/men/45.jpg"
+                        },
+                        anggota: [{
+                                nama: "A",
+                                foto: "https://randomuser.me/api/portraits/men/60.jpg"
+                            },
+                            {
+                                nama: "B",
+                                foto: "https://randomuser.me/api/portraits/women/61.jpg"
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
 
-            AOS.refresh();
-        }
+        bagaimana diubah ke db dan dibuatkan menu crudnya

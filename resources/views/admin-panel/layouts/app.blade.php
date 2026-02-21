@@ -24,10 +24,29 @@
 
                 <a class="list-group-item list-group-item-action p-3" href="{{ route('filosofi.index') }}">Filosofi</a>
 
-                <a class="list-group-item list-group-item-action p-3" href="">Visi Misi</a>
+                <a class="list-group-item list-group-item-action p-3" href="{{ route('vimi.index') }}">Visi Misi</a>
 
-                <a class="list-group-item list-group-item-action p-3" href="">Struktur</a>
+                {{-- Dropdown Struktur --}}
+                <a class="list-group-item list-group-item-action p-3 d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" href="#strukturMenu" role="button" aria-expanded="false"
+                    aria-controls="strukturMenu">
+                    Struktur
+                </a>
 
+                <div class="collapse" id="strukturMenu">
+                    <a class="list-group-item list-group-item-action ps-5" href="{{ route('bidang.index') }}">
+                        Bidang
+                    </a>
+                    <a class="list-group-item list-group-item-action ps-5" href="">
+                        Departemen
+                    </a>
+                    <a class="list-group-item list-group-item-action ps-5" href="">
+                        Jabatan
+                    </a>
+                    <a class="list-group-item list-group-item-action ps-5" href="">
+                        Kepengurusan
+                    </a>
+                </div>
                 <a class="list-group-item list-group-item-action p-3" href="">Berita</a>
 
                 <a class="list-group-item list-group-item-action p-3" href="">Kontak</a>

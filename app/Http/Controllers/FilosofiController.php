@@ -59,23 +59,22 @@ class FilosofiController extends Controller
         $filosofi = Filosofi::find($id);
 
         // Cara manual (lebih disarankan untuk pemula)
-        $filosofi->nama_kabinet = $request->nama_kabinet;
-        $filosofi->deskripsi1 = $request->deskripsi1;
-        $filosofi->deskripsi2 = $request->deskripsi2;
+        $filosofi->filosofi_nama = $request->filosofi_nama;
+        $filosofi->filosofi_logo = $request->filosofi_logo;
 
         // Kalau ada upload logo baru
-        if ($request->hasFile('logo')) {
+        if ($request->hasFile('logo_kabinet')) {
 
-            // Hapus logo lama (opsional tapi disarankan)
-            if ($filosofi->logo) {
-                Storage::disk('public')->delete($filosofi->logo);
+            // Hapus logo_kabinet lama (opsional tapi disarankan)
+            if ($filosofi->logo_kabinet) {
+                Storage::disk('public')->delete($filosofi->logo_kabinet);
             }
 
-            // Simpan logo baru
-            $path = $request->file('logo')->store('filosofi', 'public');
+            // Simpan logo_kabinet baru
+            $path = $request->file('logo_kabinet')->store('filosofi', 'public');
 
             // Simpan path ke DB
-            $filosofi->logo = $path;
+            $filosofi->logo_kabinet = $path;
         }
 
         $filosofi->save();

@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Filosofi extends Model
+class Vimi extends Model
 {
     protected $fillable = [
-        'logo_kabinet',
-        'filosofi_nama',
-        'filosofi_kabinet',
+        'visi',
+        'misi',
     ];
 }

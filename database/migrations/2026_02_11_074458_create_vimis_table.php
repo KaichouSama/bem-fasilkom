@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filosofis', function (Blueprint $table) {
+        Schema::create('vimis', function (Blueprint $table) {
             $table->id();
-            $table->string('logo_kabinet')->nullable();
-            $table->text('filosofi_nama');
-            $table->text('filosofi_logo');
+            $table->text('visi');
+            $table->text('misi');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filosofis');
+        Schema::dropIfExists('vimis');
     }
 };
