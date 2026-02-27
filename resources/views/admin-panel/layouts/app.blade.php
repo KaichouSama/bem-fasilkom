@@ -22,8 +22,24 @@
 
                 <a class="list-group-item list-group-item-action p-3" href="{{ route('hero.index') }}">Hero</a>
 
-                <a class="list-group-item list-group-item-action p-3" href="{{ route('filosofi.index') }}">Filosofi</a>
+                {{-- Dropdown Filosofi --}}
+                <a class="list-group-item list-group-item-action p-3 d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse" href="#filosofiMenu" role="button" aria-expanded="false"
+                    aria-controls="filosofiMenu">
+                    Filosofi
+                </a>
 
+                <div class="collapse" id="filosofiMenu">
+                    <a class="list-group-item list-group-item-action ps-5" href="{{ route('logo-kabinet.index') }}">
+                        Logo Kabinet
+                    </a>
+                    <a class="list-group-item list-group-item-action ps-5" href="{{ route('filosofi-nama.index') }}">
+                        Filosofi Nama
+                    </a>
+                    <a class="list-group-item list-group-item-action ps-5" href="{{ route('filosofi-logo.index') }}">
+                        Filosofi Logo
+                    </a>
+                </div>
                 <a class="list-group-item list-group-item-action p-3" href="{{ route('vimi.index') }}">Visi Misi</a>
 
                 {{-- Dropdown Struktur --}}
@@ -47,6 +63,7 @@
                         Kepengurusan
                     </a>
                 </div>
+
                 <a class="list-group-item list-group-item-action p-3" href="">Berita</a>
 
                 <a class="list-group-item list-group-item-action p-3" href="">Kontak</a>

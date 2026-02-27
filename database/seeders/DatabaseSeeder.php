@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(HeroSeeder::class);
-        $this->call(FilosofiSeeder::class);
         $this->call(VimiSeeder::class);
 
 

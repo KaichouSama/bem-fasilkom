@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Filosofi extends Model
+class FilosofiLogo extends Model
 {
     protected $fillable = [
-        'logo_kabinet',
-        'filosofi_nama',
-        'filosofi_kabinet',
+        'gambar_logo',
+        'nama_logo',
+        'deskripsi_logo'
     ];
 }

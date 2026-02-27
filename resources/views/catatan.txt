@@ -24,3 +24,37 @@ Struktur organisasi
 Departemen
 
 Anggota
+
+            {{-- <!-- FILOSOFI NAMA & LOGO -->
+            <div class="row g-4">
+
+                <!-- FILOSOFI NAMA -->
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold text-primary text-center mb-3">
+                                Filosofi Nama
+                            </h5>
+
+                            <div class="lh-lg text-start">
+                                {!! nl2br(e($filosofi->filosofi_nama)) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILOSOFI LOGO -->
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="card h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold text-primary text-center mb-3">
+                                Filosofi Logo
+                            </h5>
+
+                            <div class="lh-lg text-start">
+                                {!! nl2br(e($filosofi->filosofi_logo)) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}

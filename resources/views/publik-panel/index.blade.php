@@ -282,6 +282,25 @@
         }
 
 
+        /* filosofi */
+        .filosofi-card {
+            background: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .filosofi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .filosofi-img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
         /* DIVISI */
         .division-btn {
             cursor: pointer;
@@ -718,57 +737,6 @@
 
 
     <!-- FILOSOFI -->
-    {{-- <section id="filosofi" style="scroll-margin-top:1px; overflow-x:hidden;">
-
-        <div class="container-fluid px-3">
-            
-            <h2 class="text-center section-title" data-aos="fade-up">
-                Filosofi Kabinet
-            </h2>
-
-            <div class="row align-items-center">
-
-                <!-- KOLOM LOGO -->
-                <div class="col-md-5 text-center mb-4 mb-md-0" data-aos="zoom-in">
-                    <img src="{{ $filosofi->logo_kabinet == 'default.png' ? asset('images/default.png') : asset('storage/' . $filosofi->logo) }}"
-                        class="img-fluid filosofi-logo">
-
-                    <h5 class="fw-bold mt-4 text-primary fst-italic">
-                        {{ $filosofi->nama_kabinet }}
-                    </h5>
-                </div>
-
-                <!-- KOLOM DESKRIPSI -->
-                <div class="col-md-7" data-aos="fade-left">
-
-                    <!-- FILOSOFI NAMA -->
-                    <div class="filosofi-box mb-4">
-                        <h5 class="fw-bold text-primary filosofi-title">
-                            Filosofi Nama
-                        </h5>
-
-                        <div class="filosofi-text text-start lh-lg">
-                            {!! nl2br(e($filosofi->filosofi_nama)) !!}
-                        </div>
-                    </div>
-
-                    <!-- FILOSOFI LOGO -->
-                    <div class="filosofi-box">
-                        <h5 class="fw-bold text-primary filosofi-title">
-                            Filosofi Logo
-                        </h5>
-
-                        <div class="filosofi-text text-start lh-lg">
-                            {!! nl2br(e($filosofi->filosofi_logo)) !!}
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-    <!-- FILOSOFI -->
     <section id="filosofi" style="scroll-margin-top:1px; overflow-x:hidden;">
 
         <div class="container">
@@ -780,44 +748,75 @@
 
             <!-- LOGO KABINET -->
             <div class="text-center mb-5" data-aos="zoom-in">
-                <img src="{{ $filosofi->logo_kabinet == 'default.png' ? asset('images/default.png') : asset('storage/' . $filosofi->logo) }}"
-                    class="img-fluid filosofi-logo">
+                <img src="{{ $logo && $logo->logo_kabinet ? asset('storage/' . $logo->logo_kabinet) : asset('images/default.png') }}"
+                    class="img-fluid filosofi-logo" style="max-width: 300px;">
             </div>
 
-            <!-- FILOSOFI NAMA & LOGO -->
-            <div class="row g-4">
 
-                <!-- FILOSOFI NAMA -->
-                <div class="col-md-6" data-aos="fade-right">
-                    <div class="card shadow-sm border-0 rounded-4">
-                        <div class="card-body p-4">
-                            <h5 class="fw-bold text-primary text-center mb-3">
-                                Filosofi Nama
-                            </h5>
+            <!-- FILOSOFI NAMA -->
+            <h4 class="fw-bold text-primary text-center mt-5 mb-4">
+                Filosofi Nama
+            </h4>
 
-                            <div class="lh-lg text-start">
-                                {!! nl2br(e($filosofi->filosofi_nama)) !!}
-                            </div>
-                        </div>
+            <div class="mb-5">
+
+                @forelse($filosofiNama as $item)
+                    <div class="filosofi-card mb-4 p-4 rounded-4">
+                        <h6 class="fw-bold mb-2">
+                            {{ $item->nama_kabinet }}
+                        </h6>
+                        <p class="text-muted mb-0">
+                            {{ $item->deskripsi_kabinet }}
+                        </p>
                     </div>
-                </div>
-
-                <!-- FILOSOFI LOGO -->
-                <div class="col-md-6" data-aos="fade-left">
-                    <div class="card h-100 shadow-sm border-0 rounded-4">
-                        <div class="card-body p-4">
-                            <h5 class="fw-bold text-primary text-center mb-3">
-                                Filosofi Logo
-                            </h5>
-
-                            <div class="lh-lg text-start">
-                                {!! nl2br(e($filosofi->filosofi_logo)) !!}
-                            </div>
-                        </div>
+                @empty
+                    <div class="text-center text-muted">
+                        Data filosofi belum tersedia.
                     </div>
-                </div>
+                @endforelse
 
             </div>
+
+
+            <!-- FILOSOFI LOGO -->
+            <!-- FILOSOFI LOGO -->
+            <h4 class="fw-bold text-primary text-center mt-5 mb-4">
+                Filosofi Logo
+            </h4>
+
+            <div class="container">
+
+                @forelse ($filosofiLogo as $item)
+                    <div
+                        class="filosofi-card mb-4 p-4 rounded-4 
+            d-flex align-items-center 
+            flex-column flex-md-row">
+
+                        @if ($item->gambar_logo)
+                            <img src="{{ asset('storage/' . $item->gambar_logo) }}"
+                                class="filosofi-img mb-3 mb-md-0 me-md-4" width="120">
+                        @endif
+
+                        <div>
+                            <h6 class="fw-bold mb-2">
+                                {{ $item->nama_logo }}
+                            </h6>
+                            <p class="text-muted mb-0">
+                                {{ $item->deskripsi_logo }}
+                            </p>
+                        </div>
+                    </div>
+
+                @empty
+                    <div class="text-center text-muted">
+                        Data filosofi logo belum tersedia.
+                    </div>
+                @endforelse
+
+            </div>
+
+
+
         </div>
     </section>
 
@@ -840,7 +839,7 @@
                     <div class="card shadow-sm border-0 rounded-4">
                         <div class="card-body p-4 text-center">
                             <h4 class="fw-bold text-primary mb-3">Visi</h4>
-                            <p class="mb-0">
+                            <p class="mb-0 text-start">
                                 {{ $vimi->visi }}
                             </p>
                         </div>
@@ -983,6 +982,10 @@
 
     <!-- BERITA SLIDER -->
     <section id="berita">
+
+        <h2 class="text-center section-title" data-aos="fade-up">
+            Berita Fasilkom
+        </h2>
 
         {{-- ANIMASI DARI SLIDER KE GRID --}}
         <div id="berita-slider-container" class="berita-show">
@@ -1730,12 +1733,12 @@
         </div>
         <div class="row justify-content-center g-4">
         ${s.sekretaris.map(sec => `
-                <div class="col-md-3 col-sm-4 col-6 text-center">
-                    <img src="${sec.foto}" class="rounded-circle shadow mb-2"
-                        style="width:120px;height:120px;object-fit:cover">
-                    <p class="fw-semibold mb-0">${sec.nama}</p>
-                </div>
-            `).join("")}
+                                        <div class="col-md-3 col-sm-4 col-6 text-center">
+                                            <img src="${sec.foto}" class="rounded-circle shadow mb-2"
+                                                style="width:120px;height:120px;object-fit:cover">
+                                            <p class="fw-semibold mb-0">${sec.nama}</p>
+                                        </div>
+                                    `).join("")}
         </div>
 
         <!-- BENDAHARA -->
@@ -1744,12 +1747,12 @@
         </div>
         <div class="row justify-content-center g-4">
         ${s.bendahara.map(bend => `
-                <div class="col-md-3 col-sm-4 col-6 text-center">
-                    <img src="${bend.foto}" class="rounded-circle shadow mb-2"
-                        style="width:120px;height:120px;object-fit:cover">
-                    <p class="fw-semibold mb-0">${bend.nama}</p>
-                </div>
-            `).join("")}
+                                        <div class="col-md-3 col-sm-4 col-6 text-center">
+                                            <img src="${bend.foto}" class="rounded-circle shadow mb-2"
+                                                style="width:120px;height:120px;object-fit:cover">
+                                            <p class="fw-semibold mb-0">${bend.nama}</p>
+                                        </div>
+                                    `).join("")}
         </div>
     `;
                 return;

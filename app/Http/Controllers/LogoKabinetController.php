@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Filosofi;
+use App\Models\LogoKabinet;
 use Illuminate\Support\Facades\Storage;
 
 
-class FilosofiController extends Controller
+class LogoKabinetController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $filosofi = Filosofi::first();
-        return view('admin-panel.filosofi.index', compact('filosofi'));
+        $logo = LogoKabinet::firstOrCreate();
+        return view('admin-panel.filosofi.logo-kabinet.index', compact('logo'));
     }
 
     /**
@@ -47,8 +47,8 @@ class FilosofiController extends Controller
      */
     public function edit(string $id)
     {
-        $filosofi = Filosofi::find($id);
-        return view('admin-panel.filosofi.edit', compact('filosofi'));
+        $logo = LogoKabinet::findOrFail($id);
+        return view('admin-panel.filosofi.logo-kabinet.edit', compact('logo'));
     }
 
     /**
@@ -56,31 +56,26 @@ class FilosofiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $filosofi = Filosofi::find($id);
+        $logo = LogoKabinet::findOrFail($id);
 
-        // Cara manual (lebih disarankan untuk pemula)
-        $filosofi->filosofi_nama = $request->filosofi_nama;
-        $filosofi->filosofi_logo = $request->filosofi_logo;
-
-        // Kalau ada upload logo baru
         if ($request->hasFile('logo_kabinet')) {
 
-            // Hapus logo_kabinet lama (opsional tapi disarankan)
-            if ($filosofi->logo_kabinet) {
-                Storage::disk('public')->delete($filosofi->logo_kabinet);
+            // hapus lama jika ada
+            if ($logo->logo_kabinet) {
+                Storage::disk('public')->delete($logo->logo_kabinet);
             }
 
-            // Simpan logo_kabinet baru
-            $path = $request->file('logo_kabinet')->store('filosofi', 'public');
+            // simpan baru
+            $path = $request->file('logo_kabinet')
+                            ->storeAs('logo_kabinet', 'logo_kabinet.png', 'public');
 
-            // Simpan path ke DB
-            $filosofi->logo_kabinet = $path;
+            $logo->logo_kabinet = $path;
         }
 
-        $filosofi->save();
+        $logo->save();
 
-
-        return redirect()->route('filosofi.index');
+        return redirect()->route('logo-kabinet.index');
+    
     }
 
     /**
